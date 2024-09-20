@@ -1,7 +1,7 @@
 .gradle
 **/build/
 !src/**/build/
-
+.kotlin
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -10,10 +10,8 @@ gradle-app.setting
 
 # Avoid ignore Gradle wrappper properties
 !gradle-wrapper.properties
-
 # Cache of project
 .gradletasknamecache
-
 # Eclipse Gradle plugin generated files
 # Eclipse Core
 .project
