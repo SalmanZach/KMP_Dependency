@@ -1,6 +1,6 @@
-package com.salmanzach.deps.di
+package com.salmanzach.deps.domain.di
 
-import com.salmanzach.deps.network.WeatherService
+import com.salmanzach.deps.domain.network.WeatherServiceClient
 import com.salmanzach.deps.repo.WeatherRepository
 import com.salmanzach.deps.repo.WeatherRepositoryImp
 import com.salmanzach.deps.viewModel.HomeViewModel
@@ -13,7 +13,7 @@ import org.koin.dsl.module
 expect val platformModule: Module
 
 val sharedModule = module {
-    singleOf(::WeatherService)
+    singleOf(::WeatherServiceClient)
     singleOf(::WeatherRepositoryImp).bind<WeatherRepository>()
     viewModelOf(::HomeViewModel)
 }

@@ -1,18 +1,24 @@
 package com.salmanzach.deps.repo
 
-import com.salmanzach.deps.network.WeatherService
+import com.salmanzach.deps.domain.network.WeatherServiceClient
+import com.salmanzach.deps.util.NetworkError
+import com.salmanzach.deps.util.Result
 
 interface WeatherRepository {
-    fun getCurrentWeather() : String
+    suspend fun getCurrentWeather(apiKey:String) : Result<String, NetworkError>
 }
 
 
 class  WeatherRepositoryImp(
-    private val service: WeatherService
+    private val service: WeatherServiceClient
 ) : WeatherRepository {
 
-    override fun getCurrentWeather(): String {
-        return service.getWeather()
+    override suspend fun getCurrentWeather(apiKey:String): Result<String, NetworkError> {
+        return service.getCurrentWeather(
+            lat = 33.44,
+            lon = -94.04,
+            appId =  "add your key"
+        )
     }
 
 }

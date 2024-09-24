@@ -1,6 +1,5 @@
 package com.salmanzach.deps
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,16 +8,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.salmanzach.deps.viewModel.HomeViewModel
 import kmpdependencies.composeapp.generated.resources.Res
-import kmpdependencies.composeapp.generated.resources.compose_multiplatform
-import org.jetbrains.compose.resources.painterResource
+import kmpdependencies.composeapp.generated.resources.app_name
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinContext
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -40,7 +37,7 @@ fun HomeScreen() {
                     ){
                         Text(
                             style = MaterialTheme.typography.body1,
-                            text = "Open Weather"
+                            text = stringResource(Res.string.app_name)
                         )
                     }
                 }
@@ -50,8 +47,7 @@ fun HomeScreen() {
                     Modifier
                         .fillMaxWidth()
                         .padding(paddingValues),
-                    horizontalAlignment = Alignment.CenterHorizontally)
-                {
+                    horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         style = MaterialTheme.typography.body1,
                         text = viewModel.getCurrentWeather()

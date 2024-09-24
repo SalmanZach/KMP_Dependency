@@ -1,4 +1,4 @@
-package com.salmanzach.deps.di
+package com.salmanzach.deps.domain.di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration

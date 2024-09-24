@@ -1,7 +1,7 @@
 package com.salmanzach.deps
 
 import android.app.Application
-import com.salmanzach.deps.di.initKoin
+import com.salmanzach.deps.domain.di.initKoin
 import org.koin.android.ext.koin.androidContext
 
 class WeatherApp : Application() {
