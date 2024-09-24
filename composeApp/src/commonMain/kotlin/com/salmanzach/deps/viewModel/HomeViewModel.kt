@@ -5,7 +5,7 @@ import com.salmanzach.deps.repo.WeatherRepository
 
 class HomeViewModel(
     private val repository: WeatherRepository
-) :ViewModel() {
+) : ViewModel() {
 
     fun getCurrentWeather() : String = repository.getCurrentWeather()
 

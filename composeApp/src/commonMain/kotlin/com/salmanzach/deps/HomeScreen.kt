@@ -15,36 +15,49 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.salmanzach.deps.viewModel.HomeViewModel
 import kmpdependencies.composeapp.generated.resources.Res
 import kmpdependencies.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.KoinContext
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun HomeScreen() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 16.dp, horizontal = 24.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                Text(
-                    style = MaterialTheme.typography.body1,
-                    text = "Open Weather"
-                )
+    MaterialTheme {
+        KoinContext {
+            val viewModel = koinViewModel<HomeViewModel>()
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                topBar = {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 16.dp, horizontal = 24.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Text(
+                            style = MaterialTheme.typography.body1,
+                            text = "Open Weather"
+                        )
+                    }
+                }
+            ) { paddingValues ->
+
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(paddingValues),
+                    horizontalAlignment = Alignment.CenterHorizontally)
+                {
+                    Text(
+                        style = MaterialTheme.typography.body1,
+                        text = viewModel.getCurrentWeather()
+                    )
+                }
             }
-        }
-    ) { paddingValues ->
-
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .padding(paddingValues),
-            horizontalAlignment = Alignment.CenterHorizontally)
-        {
-
         }
     }
 }
