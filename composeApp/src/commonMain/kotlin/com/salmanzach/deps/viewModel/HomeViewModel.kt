@@ -7,6 +7,6 @@ class HomeViewModel(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    fun getCurrentWeather() : String = repository.getCurrentWeather()
+    suspend fun getCurrentWeather() = repository.getCurrentWeather()
 
 }

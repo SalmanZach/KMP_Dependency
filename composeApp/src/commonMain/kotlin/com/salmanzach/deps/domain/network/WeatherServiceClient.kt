@@ -11,18 +11,19 @@ import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.serialization.SerializationException
 
 class WeatherServiceClient(
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
+    private val apiKey : String
 ) {
 
 
-    suspend fun getCurrentWeather(lat:Double,lon:Double,appId:String) : Result<String,NetworkError>{
+    suspend fun getCurrentWeather(lat:Double,lon:Double) : Result<CurrentWeatherResponse,NetworkError>{
         val response = try {
             httpClient.get(
                 urlString = BASE_URL
             ) {
                 parameter("lat", lat)
                 parameter("lon", lon)
-                parameter("appid", appId)
+                parameter("appid", apiKey)
             }
         } catch(e: UnresolvedAddressException) {
             return Result.Error(NetworkError.NO_INTERNET)
@@ -31,8 +32,8 @@ class WeatherServiceClient(
         }
         return when(response.status.value) {
             in 200..299 -> {
-                val censoredText = response.body<CurrentWeatherResponse>()
-                Result.Success(censoredText.result)
+                val body = response.body<CurrentWeatherResponse>()
+                Result.Success(body)
             }
             401 -> Result.Error(NetworkError.UNAUTHORIZED)
             409 -> Result.Error(NetworkError.CONFLICT)
