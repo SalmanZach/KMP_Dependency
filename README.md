@@ -13,7 +13,7 @@ This is a Kotlin Multiplatform (KMP) project designed to target both Android and
 This project is organized into a shared module and platform-specific modules for Android and iOS. Shared business logic, such as networking and dependency injection, is placed in the shared module, while UI code is separated by platform.
 
 <h3>Android and iOS</h3>
-<img src="./screens/mobile.png" alt="IDE" width="900"/>
+<img src="./screens/mobiles.png" alt="IDE" width="900"/>
 
 
 <h3>IDE Setup</h3>
