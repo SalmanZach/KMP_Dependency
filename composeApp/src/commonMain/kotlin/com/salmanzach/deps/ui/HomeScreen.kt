@@ -80,7 +80,7 @@ fun WeatherScreen(viewModel: HomeViewModel) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.h6,
                     text = stringResource(Res.string.app_name)
                 )
             }
