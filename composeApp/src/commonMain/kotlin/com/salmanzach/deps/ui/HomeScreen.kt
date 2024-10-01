@@ -1,11 +1,15 @@
 package com.salmanzach.deps.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -17,6 +21,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.salmanzach.deps.domain.network.CurrentWeatherResponse
@@ -108,35 +114,57 @@ fun WeatherInfoTable(weather: CurrentWeatherResponse) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Weather Info as rows in a table
-        WeatherInfoRow(label = "Country", value = weather.sys.country)
-        WeatherInfoRow(label = "Temperature", value = "${weather.main.temp} K")
-        WeatherInfoRow(label = "Feels Like", value = "${weather.main.feelsLike} K")
-        WeatherInfoRow(label = "Humidity", value = "${weather.main.humidity}%")
-        WeatherInfoRow(label = "Pressure", value = "${weather.main.pressure} hPa")
-        WeatherInfoRow(label = "Wind Speed", value = "${weather.wind.speed} m/s")
-        WeatherInfoRow(label = "Clouds", value = "${weather.clouds.all}%")
-        WeatherInfoRow(label = "Weather", value = weather.weather.firstOrNull()?.description ?: "N/A")
+        WeatherInfoCard(label = "Country", value = weather.sys.country)
+        WeatherInfoCard(label = "Temperature", value = "${weather.main.temp} K")
+        WeatherInfoCard(label = "Feels Like", value = "${weather.main.feelsLike} K")
+        WeatherInfoCard(label = "Humidity", value = "${weather.main.humidity}%")
+        WeatherInfoCard(label = "Pressure", value = "${weather.main.pressure} hPa")
+        WeatherInfoCard(label = "Wind Speed", value = "${weather.wind.speed} m/s")
+        WeatherInfoCard(label = "Clouds", value = "${weather.clouds.all}%")
+        WeatherInfoCard(label = "Weather", value = weather.weather.firstOrNull()?.description ?: "N/A")
     }
 }
 
 @Composable
-fun WeatherInfoRow(label: String, value: String) {
-    Row(
+fun WeatherInfoCard(label: String, value: String) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+            .padding(vertical = 8.dp),
+        elevation = 8.dp,
+        backgroundColor = MaterialTheme.colors.surface
     ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.weight(1f)
-        )
-        Text(
-            text = value,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.End
-        )
+        Box(
+            modifier = Modifier
+                .background(
+                    Brush.linearGradient(
+                        colors = listOf(
+                            MaterialTheme.colors.primary.copy(alpha = 0.5f),
+                            MaterialTheme.colors.primaryVariant.copy(alpha = 0.9f)
+                        )
+                    )
+                )
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.body1,
+                    color = Color.White,
+                    modifier = Modifier.weight(1f)
+                )
+                Text(
+                    text = value,
+                    style = MaterialTheme.typography.body1,
+                    color = Color.White,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.End
+                )
+            }
+        }
     }
 }
