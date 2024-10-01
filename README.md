@@ -12,13 +12,12 @@ This is a Kotlin Multiplatform (KMP) project designed to target both Android and
 ## Project Structure
 This project is organized into a shared module and platform-specific modules for Android and iOS. Shared business logic, such as networking and dependency injection, is placed in the shared module, while UI code is separated by platform.
 
-<h3>Android and iOS</h3>
-<div style="display: flex; justify-content: space-between;">
-  <div style="text-align: center;">
+<div style="display: flex; justify-content: center; align-items: center;">
+  <div style="margin-right: 20px; text-align: center;">
     <img src="./screens/android.png" alt="Android" width="300"/>
     <p>Android</p>
   </div>
-  <div style="text-align: center;">
+  <div style="margin-left: 20px; text-align: center;">
     <img src="./screens/ios.png" alt="iOS" width="300"/>
     <p>iOS</p>
   </div>
