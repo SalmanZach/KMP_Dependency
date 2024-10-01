@@ -1,6 +1,7 @@
 package com.salmanzach.deps.domain.network
 
 import com.salmanzach.deps.domain.Constants.BASE_URL
+import com.salmanzach.deps.domain.di.apiKey
 import com.salmanzach.deps.util.NetworkError
 import com.salmanzach.deps.util.Result
 import io.ktor.client.HttpClient
@@ -11,8 +12,7 @@ import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.serialization.SerializationException
 
 class WeatherServiceClient(
-    private val httpClient: HttpClient,
-    private val apiKey : String
+    private val httpClient: HttpClient
 ) {
 
 

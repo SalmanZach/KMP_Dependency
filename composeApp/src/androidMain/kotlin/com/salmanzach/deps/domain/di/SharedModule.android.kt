@@ -6,10 +6,9 @@ import org.koin.dsl.module
 
 actual val platformModule = module {
     single {
-        BuildConfig.API_KEY
-    }
-    single {
         createHttpClient(OkHttp.create())
     }
-
 }
+
+actual val apiKey: String
+    get() = BuildConfig.API_KEY

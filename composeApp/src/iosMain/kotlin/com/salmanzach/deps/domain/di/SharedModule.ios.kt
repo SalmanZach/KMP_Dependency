@@ -5,13 +5,10 @@ import org.koin.dsl.module
 
 actual val platformModule = module {
     single {
-        getKey()
-    }
-    single {
      createHttpClient(Darwin.create())
     }
  }
 
-fun getKey():String {
-    return "API_KEY"
-}
+
+actual val apiKey: String
+    get() = "add_your_key_here"

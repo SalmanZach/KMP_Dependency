@@ -12,6 +12,8 @@ import org.koin.dsl.module
 
 expect val platformModule: Module
 
+expect val apiKey: String
+
 val sharedModule = module {
     singleOf(::WeatherServiceClient)
     singleOf(::WeatherRepositoryImp).bind<WeatherRepository>()
